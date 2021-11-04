@@ -29,7 +29,7 @@ Above is the 3 main problems when it come to loading object, after completely un
 
 PS: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenGL will crush your computer without mercy!
 
-PSS: I didnt put the image of 12M factory since the only Factory model I can find is wrong, they have wrong vertex and face data, The program run smoothly, not data is missing and result in black screen :)
+PSS: I didnt put the image of 12M factory since the only Factory model I can find turn out to be wrong, they have wrong vertex and face data, The program run smoothly, no vertex data is missing and result in black screen :)
 
 # Gallerry
 
