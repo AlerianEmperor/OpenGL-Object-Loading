@@ -13,7 +13,7 @@ To Solve this problem, treat them as seperate vertex, for example, if v have 2 t
 
 OpenGL only allowed maxium 32 textures at a times while Crytek-Sponza have over 70 textures, San-Miguel have 324 textures. To overcome this problem, model are drawn by mesh instead of drawing as a whole, this technique also explain why assimp use mesh in their source code.
 
-Fun Fact: Most Totorial on the internet choose the easy way, they only show you how to load object having 1 or 2 textures and not telling you how to do it when there are more than 32 textures.
+Fun Fact: Most Tutorial on the internet, if not all, choose the easy way, they only show you how to load object having 1 or 2 textures and not telling you how to do it when there are more than 32 textures.
 
 3. Model which is too large:
 
