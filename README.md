@@ -31,5 +31,5 @@ Noted: it is only possible to load SanMiguel with modern OpenGL pipeline, old Op
 
 # Gallerry
 
-San-Miguel 10M Triangles.
+San Miguel 10M Triangles.
 ![San_Miguel](https://user-images.githubusercontent.com/93391908/139820994-3ecf0b20-9775-4fa5-8cef-04062b3b7506.png)
