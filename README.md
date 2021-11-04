@@ -34,4 +34,5 @@ PSS: I didnt put the image of 12M factory since the only Factory model I can fin
 # Gallerry
 
 San Miguel 10M Triangles.
-![San_Miguel](https://user-images.githubusercontent.com/93391908/139820994-3ecf0b20-9775-4fa5-8cef-04062b3b7506.png)
+![image](https://user-images.githubusercontent.com/93391908/140255256-d7cb524f-a53d-428e-ae15-4ee86b3ee16e.png)
+
