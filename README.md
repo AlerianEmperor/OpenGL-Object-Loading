@@ -1,6 +1,8 @@
 # OpenGL-Object-Loading
 OpenGL Object Loading can load virtually every 3d.obj file you can find on the internet, without using another object loading library (assimp for example). The program can load Object with 12M+ triangles and more.
 
+The purpose of this project is to provide a shooting point for my camera in the physical based rendering with Lux project. Real time camera position can be turn on to choose the best view spot. 
+
 # Challange
 Loading object in opengl seem to be an easy problem at first, but it acttually can be very hard. The following problems will arise when you tried to load an object without using well known library like assimp:
 
