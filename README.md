@@ -5,10 +5,12 @@ OpenGL Object Loading can load virtually every 3d.obj file you can find on the i
 Loading object in opengl seem to be an easy problem at first, but it acttually can be very hard. The following problems will arise when you tried to load an object without using well known library like assimp:
 
 1. Apply texture is non trivial in opengl:
+ 
 If you only draw object by vertex coordinate, that's easy. But apply texture can become a problem, texture will become disarray and there seem to be no way to fix. This problem arise because one vertex share many texture coordiante, and opengl only store the first texture coordinate you fetch into memory. 
 To Solve this problem, treat them as seperate vertex, for example, if v have 2 texcoords: t1, t2 and you have to store them as v-t1, v-t2, instead of v-t1-t2.
 
 2. Limited Texture available:
+
 OpenGL only allowed maxium 32 textures at a times while Crytek-Sponza have over 70 textures, San-Miguel have 324 textures. To overcome this problem, model are drawn by mesh instead of drawing as a whole, this technique also explain why assimp use mesh in their source code.
 
 Fun Fact: Most Totorial on the internet choose the easy way, they only show you how to load object having 1 or 2 textures and not telling you how to do it when there are more than 32 textures.
