@@ -14,6 +14,7 @@ OpenGL only allowed maxium 32 textures at a times while Crytek-Sponza have over 
 Fun Fact: Most Totorial on the internet choose the easy way, they only show you how to load object having 1 or 2 textures and not telling you how to do it when there are more than 32 textures.
 
 3. Model which is too large:
+
 If you want draw large model like San-Miguel 10M triangles, Factory 12M triangles and bigger. Computer usually ran out of memory and return error. There are two reason this problem occur:
 a. You tried to draw the model as "a Whole", you have to divide model into mesh, the most optimal way is to split them by material
 b. You stored VAO, VBO and IBO into one big array or vector. Again, divide them into mesh, each mesh have its own data.
