@@ -19,7 +19,7 @@ Fun Fact: Most Tutorial on the internet, if not all, choose the easy way, they o
 
 If you want draw large model like San-Miguel 10M triangles, Factory 12M triangles and bigger. Computer usually ran out of memory and return error. There are two reason this problem occur:
 
-a. You tried to draw the model as "a Whole", you have to divide model into mesh, the most optimal way is to split them by material
+a. You tried to draw the model as "a Whole", you have to divide model into mesh, the most optimal way is to split them by material.
 
 b. You stored VAO, VBO and IBO into one big array or vector. Again, divide them into mesh, each mesh have its own data.
 
