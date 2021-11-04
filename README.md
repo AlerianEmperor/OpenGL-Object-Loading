@@ -27,7 +27,9 @@ b. You stored VAO, VBO and IBO into one big array or vector, or store them as th
 
 Above is the 3 main problems when it come to loading object, after completely understand the source code, you will have a more in depth look of how object loading library work and the way they run millions of triangles in real time! 
 
-Noted: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenGL will crush your computer without mercy!
+PS: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenGL will crush your computer without mercy!
+
+PSS: I didnt put the image of 12M factory since the only Factory model I can find is wrong, they have wrong vertex and face data, The program run smoothly, not data is missing and result in black screen :)
 
 # Gallerry
 
