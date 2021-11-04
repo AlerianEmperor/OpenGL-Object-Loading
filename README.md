@@ -19,7 +19,7 @@ Fun Fact: Most Tutorial on the internet, if not all, choose the easy way, they o
 
 3. Model which is too large:
 
-If you want draw large model like San Miguel 10M triangles, Factory 12M triangles and bigger. Computer usually ran out of memory and return error. There are two reasons for this problem:
+If you want to draw large models like San Miguel 10M triangles, Factory 12M triangles and bigger. Computer usually ran out of memory and return error. There are two reasons for this problem:
 
 a. You tried to draw the model as "a Whole", you have to divide model into mesh, the most optimal way is to split them by material.
 
