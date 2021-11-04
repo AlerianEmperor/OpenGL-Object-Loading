@@ -23,7 +23,7 @@ If you want draw large model like San Miguel 10M triangles, Factory 12M triangle
 
 a. You tried to draw the model as "a Whole", you have to divide model into mesh, the most optimal way is to split them by material.
 
-b. You stored VAO, VBO and IBO into one big array or vector, or store 3 them as three large vector separately. Again, divide them into mesh, each mesh have its own data.
+b. You stored VAO, VBO and IBO into one big array or vector, or store them as three large vector separately. Again, divide them into mesh, each mesh have its own data.
 
 Above is the 3 main problems when it come to loading object, after completely understand the source code, you will have a more in depth look of how object loading library work and the way they run millions of triangles in real time! 
 
