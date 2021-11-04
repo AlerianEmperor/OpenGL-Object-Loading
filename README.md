@@ -36,3 +36,5 @@ PSS: I didnt put the image of 12M factory since the only Factory model I can fin
 San Miguel 10M Triangles.
 ![image](https://user-images.githubusercontent.com/93391908/140255256-d7cb524f-a53d-428e-ae15-4ee86b3ee16e.png)
 
+RungHolt 9.7M Triangles.
+![image](https://user-images.githubusercontent.com/93391908/140255628-4f5f732f-2f60-4cf8-a5ac-247b901d3179.png)
