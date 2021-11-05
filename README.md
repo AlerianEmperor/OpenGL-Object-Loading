@@ -6,7 +6,7 @@ The purpose of this project is to provide a shooting point for my camera in the 
 # Challange
 Loading object in opengl seem to be an easy problem at first, but it acttually can be very hard. The following problems will arise when you tried to load an object without using well known library like assimp:
 
-1. Apply texture is non trivial in opengl:
+1. Applying texture is non trivial in opengl:
  
 If you only draw object by vertex coordinate, that's easy. But apply texture to the object can become a problem, texture will become disarray and there seem to be no way to fix. This problem arise because one vertex share many texture coordinates, and opengl only store the first texture coordinate you fetch into memory. 
 To Solve this problem, treat them as seperate vertex, for example, if v have 2 texcoords: t1, t2 and you have to store them as v-t1, v-t2, instead of v-t1-t2.
@@ -17,7 +17,7 @@ OpenGL only allowed maxium 32 textures at a times while Crytek Sponza have over 
 
 Fun Fact: Most Tutorial on the internet, if not all, choose the easy way, they only show you how to load object having 1 or 2 textures and not telling you how to do it when there are more than 32 textures.
 
-3. Model which is too large:
+3. Large models:
 
 If you want to draw large models like San Miguel 10M triangles, Factory 12M triangles and bigger. Computer usually ran out of memory and return error. There are two reasons for this problem:
 
