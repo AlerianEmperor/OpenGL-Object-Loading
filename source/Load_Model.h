@@ -173,13 +173,17 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 {
 	string s = t;
 	int length = s.find_last_of("0123456789");
-
-	//s = s.substr(0, length);
-	//cout << length << "\n";
+	s = s.substr(0, length + 1);
 
 	int sign = 1;
 	int count = 0;
 	vector<int> index;
+	//vector<int> indices;
+	face_type = Single_Line;
+
+	int num_data_per_vertex = 0;
+	bool found_num_data_per_vertex = false;
+
 	for (int i = 0; i <= length + 1; ++i)
 	{
 		if (s[i] == '-')
@@ -192,11 +196,15 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 		}
 		else if (s[i] == '/')
 		{
+			if (!found_num_data_per_vertex)
+			{
+				++num_data_per_vertex;
+			}
 			face_type = Single_Line;
 			index.emplace_back(sign * count);
 			sign = 1;
 			count = 0;
-			
+
 			if (s[i + 1] == '/')
 			{
 				face_type = Double_Line;
@@ -205,10 +213,15 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 		}
 		else if (s[i] == ' ')
 		{
+
 			index.emplace_back(sign * count);
 			sign = 1;
 			count = 0;
-			face_type = Single_Line;
+			if (!found_num_data_per_vertex)
+			{
+				++num_data_per_vertex;
+				found_num_data_per_vertex = true;
+			}
 		}
 		else if (i == length + 1)
 		{
@@ -218,281 +231,82 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 		}
 	}
 
-	
 	int size = index.size();
-	
-	if (size == 9)
+
+	if (num_data_per_vertex == 3) // v/vt/vn case   12 18 24 30 
 	{
-		for (int i = 0; i < 9; i += 3)
-		{
-			fixIndex(index[i], vs);
-			fixIndex(index[i + 1], vts);
-			fixIndex(index[i + 2], vns);		
-		}
-		Triangle_index tr(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7], index[8]);
-		tr.face_type = Single_Line;
-		trs.emplace_back(tr);
-		return;
-	}
-	else if (size == 12)
-	{
-		if (face_type == Single_Line)
-		{
-			for (int i = 0; i < 12; i += 3)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vts);
-				fixIndex(index[i + 2], vns);
-
-				//cout << index[i] << "\n";
-			}
-
-			Triangle_index tr1(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7], index[8]);
-			Triangle_index tr2(index[0], index[1], index[2], index[6], index[7], index[8], index[9], index[10], index[11]);
-
-			tr1.face_type = Single_Line;
-			tr2.face_type = Single_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			return;
-		}
-		if (face_type == Double_Line)
-		{
-			for (int i = 0; i < 12; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vns);
-			}
-
-			Triangle_index tr1(index[0], -1, index[1], index[2], -1, index[3], index[4], -1, index[5]);
-			Triangle_index tr2(index[0], -1, index[1], index[4], -1, index[5], index[6], -1, index[7]);
-			Triangle_index tr3(index[0], -1, index[1], index[6], -1, index[7], index[8], -1, index[9]);
-			Triangle_index tr4(index[0], -1, index[1], index[8], -1, index[9], index[10], -1, index[11]);
-
-			tr1.face_type = Double_Line;
-			tr2.face_type = Double_Line;
-			tr3.face_type = Double_Line;
-			tr4.face_type = Double_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			trs.emplace_back(tr3);
-			trs.emplace_back(tr4);
-			return;
-		}
-	}
-	else if (size == 15)
-	{
-		for (int i = 0; i < 15; i += 3)
+		//cout << "line 3\n";
+		for (int i = 0; i < size; i += 3)
 		{
 			fixIndex(index[i], vs);
 			fixIndex(index[i + 1], vts);
 			fixIndex(index[i + 2], vns);
-
-			//cout << index[i] << "\n";
 		}
 
-		Triangle_index tr1(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7], index[8]);
-		Triangle_index tr2(index[0], index[1], index[2], index[6], index[7], index[8], index[9], index[10], index[11]);
-		Triangle_index tr3(index[0], index[1], index[2], index[9], index[10], index[11], index[12], index[13], index[14]);
+		int start_v = 0;
+		int start_vt = 1;
+		int start_vn = 2;
 
-		tr1.face_type = Single_Line;
-		tr2.face_type = Single_Line;
-		tr3.face_type = Single_Line;
-		
-		trs.emplace_back(tr1);
-		trs.emplace_back(tr2);
-		trs.emplace_back(tr3);
-		return;
-	}
-	//assum single line
-	else if (size == 18)
-	{
-		for (int i = 0; i < 18; i += 3)
+		int num_Triangle = size / 3 - 2;
+
+		for (int i = 0; i < num_Triangle; ++i)
 		{
-			fixIndex(index[i], vs);
-			fixIndex(index[i + 1], vts);
-			fixIndex(index[i + 2], vns);
-
-			//cout << index[i] << "\n";
-		}
-
-		Triangle_index tr1(index[0], index[1], index[2], index[3], index[4], index[5], index[6], index[7], index[8]);
-		Triangle_index tr2(index[0], index[1], index[2], index[6], index[7], index[8], index[9], index[10], index[11]);
-		Triangle_index tr3(index[0], index[1], index[2], index[9], index[10], index[11], index[12], index[13], index[14]);
-		Triangle_index tr4(index[0], index[1], index[2], index[12], index[13], index[14], index[15], index[16], index[17]);
-
-		tr1.face_type = Single_Line;
-		tr2.face_type = Single_Line;
-		tr3.face_type = Single_Line;
-		tr4.face_type = Single_Line;
-
-		trs.emplace_back(tr1);
-		trs.emplace_back(tr2);
-		trs.emplace_back(tr3);
-		trs.emplace_back(tr4);
-		return;
-	}
-	else if (size == 6)
-	{
-		
-		if (face_type == Single_Line)
-		{
-			for (int i = 0; i < 6; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vts);
-			}
-			Triangle_index tr(index[0], index[1], -1, index[2], index[3], -1, index[4], index[5], -1);
+			Triangle_index tr(index[start_v], index[start_vt], index[start_vn], index[3 * i + 3], index[3 * i + 4], index[3 * i + 5], index[3 * i + 6], index[3 * i + 7], index[3 * i + 8]);
 			tr.face_type = Single_Line;
 			trs.emplace_back(tr);
 			return;
-		}
-		else if (face_type == Double_Line)
-		{
-			for (int i = 0; i < 6; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vns);
-			}
-			Triangle_index tr(index[0], -1, index[1], index[2], -1, index[3], index[4], -1, index[5]);
-			tr.face_type = Double_Line;
-			trs.emplace_back(tr);
-			return;
+			//faces.emplace_back(f);
 		}
 	}
-	else if (size == 8)
+	else if (num_data_per_vertex == 2)  //  v/vt or v//vn
 	{
-		if (face_type == Single_Line)
+		//cout << "line 2\n";
+		if (face_type == Single_Line) // v / vt
 		{
-			for (int i = 0; i < 8; i += 2)
+			//cout << "single\n";
+			for (int i = 0; i < size; i += 2)
 			{
 				fixIndex(index[i], vs);
 				fixIndex(index[i + 1], vts);
 			}
 
-			Triangle_index tr1(index[0], index[1], -1, index[2], index[3], -1, index[4], index[5], -1);
-			Triangle_index tr2(index[0], index[1], -1, index[4], index[5], -1, index[6], index[7], -1);
+			int num_Triangle = size / 2 - 2;
 
-			tr1.face_type = Single_Line;
-			tr2.face_type = Single_Line;
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			return;
+			int start_v = 0;
+			int start_vt = 1;
+
+			for (int i = 0; i < num_Triangle; ++i)
+			{
+				//01 23 45    01 45 67
+				Triangle_index tr(index[start_v], index[start_vt], -1, index[2 * i + 2], index[2 * i + 3], -1, index[2 * i + 4], index[2 * i + 5], -1);
+				tr.face_type = Single_Line;
+				trs.emplace_back(tr);
+
+			}
 		}
-		else if(face_type == Double_Line)
+		else if (face_type == Double_Line)// v // vn
 		{
-			for (int i = 0; i < 8; i += 2)
+			//cout << "double\n";
+			for (int i = 0; i < size; i += 2)
 			{
 				fixIndex(index[i], vs);
 				fixIndex(index[i + 1], vns);
 			}
 
-			Triangle_index tr1(index[0], -1, index[1], index[2], -1, index[3], index[4], -1, index[5]);
-			Triangle_index tr2(index[0], -1, index[1], index[4], -1, index[5], index[6], -1, index[7]);
-			tr1.face_type = Double_Line;
-			tr2.face_type = Double_Line;
+			int num_Triangle = size / 2 - 2;
 
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			return;
-		}
-	}
-	else if (size == 10)
-	{
-		if (face_type == Single_Line)
-		{
-			for (int i = 0; i < 10; i += 2)
+			int start_v = 0;
+			int start_vn = 1;
+
+			for (int i = 0; i < num_Triangle; ++i)
 			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vts);
+				Triangle_index tr(index[start_v], -1, index[start_vn], index[2 * i + 2], -1, index[2 * i + 3], index[2 * i + 4], -1, index[2 * i + 5]);
+				tr.face_type = Double_Line;
+				trs.emplace_back(tr);
 			}
-			
-			Triangle_index tr1(index[0], index[1], -1, index[2], index[3], -1, index[4], index[5], -1);
-			Triangle_index tr2(index[0], index[1], -1, index[4], index[5], -1, index[6], index[7], -1);
-			Triangle_index tr3(index[0], index[1], -1, index[6], index[7], -1, index[8], index[9], -1);
-
-			tr1.face_type = Single_Line;
-			tr2.face_type = Single_Line;
-			tr3.face_type = Single_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			trs.emplace_back(tr3);
-			return;
-		}
-		else if(face_type == Double_Line)
-		{
-			for (int i = 0; i < 10; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vns);
-			}
-
-			Triangle_index tr1(index[0], -1, index[1], index[2], -1, index[3], index[4], -1, index[5]);
-			Triangle_index tr2(index[0], -1, index[1], index[4], -1, index[5], index[6], -1, index[7]);
-			Triangle_index tr3(index[0], -1, index[1], index[6], -1, index[7], index[8], -1, index[9]);
-
-			tr1.face_type = Double_Line;
-			tr2.face_type = Double_Line;
-			tr3.face_type = Double_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			trs.emplace_back(tr3);
-			return;
-		}
-	}
-	else if (size == 14)
-	{
-		if (face_type == Single_Line)
-		{
-			for (int i = 0; i < 14; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vts);
-			}
-
-			Triangle_index tr1(index[0], index[1], -1, index[2], index[3], -1, index[4], index[5], -1);
-			Triangle_index tr2(index[0], index[1], -1, index[4], index[5], -1, index[6], index[7], -1);
-			Triangle_index tr3(index[0], index[1], -1, index[6], index[7], -1, index[8], index[9], -1);
-			Triangle_index tr4(index[0], index[1], -1, index[8], index[9], -1, index[10], index[11], -1);
-
-			tr1.face_type = Single_Line;
-			tr2.face_type = Single_Line;
-			tr3.face_type = Single_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			trs.emplace_back(tr3);
-			return;
-		}
-		else if (face_type == Double_Line)
-		{
-			for (int i = 0; i < 10; i += 2)
-			{
-				fixIndex(index[i], vs);
-				fixIndex(index[i + 1], vns);
-			}
-
-			Triangle_index tr1(index[0], -1, index[1], index[2], -1, index[3], index[4], -1, index[5]);
-			Triangle_index tr2(index[0], -1, index[1], index[4], -1, index[5], index[6], -1, index[7]);
-			Triangle_index tr3(index[0], -1, index[1], index[6], -1, index[7], index[8], -1, index[9]);
-
-			tr1.face_type = Double_Line;
-			tr2.face_type = Double_Line;
-			tr3.face_type = Double_Line;
-
-			trs.emplace_back(tr1);
-			trs.emplace_back(tr2);
-			trs.emplace_back(tr3);
-			return;
 		}
 	}
 }
-
-
 
 struct Index
 {
