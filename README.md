@@ -31,7 +31,7 @@ PS: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenG
 
 PSS: I didn't put the image of 12M factory since the only Factory model I can find turn out to be wrong, they have wrong vertex and index data. The program run smoothly, no vertex data is missing and result in black screen.
 
-# Gallerry
+# Gallery
 
 San Miguel 10.7M Triangles.
 ![image](https://user-images.githubusercontent.com/93391908/140255256-d7cb524f-a53d-428e-ae15-4ee86b3ee16e.png)
