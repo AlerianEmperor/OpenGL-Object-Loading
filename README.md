@@ -3,6 +3,15 @@ OpenGL Object Loading using OpenGL 4.3 is capable of loading virtually every 3d.
 
 The purpose of this project is to provide a shooting point for my camera in the physical based rendering with Lux project. Real time camera position can be turn on to choose the best view spot. 
 
+
+# Gallery
+
+San Miguel 10.7M Triangles.
+![image](https://user-images.githubusercontent.com/93391908/140255256-d7cb524f-a53d-428e-ae15-4ee86b3ee16e.png)
+
+RungHolt 9.7M Triangles.
+![image](https://user-images.githubusercontent.com/93391908/140255628-4f5f732f-2f60-4cf8-a5ac-247b901d3179.png)
+
 # Challange
 Loading object in opengl seem to be an easy problem at first, but it acttually can be very hard. The following problems will arise when you tried to load an object without using well known library like assimp:
 
@@ -30,11 +39,3 @@ Above are the 3 main problems when it come to loading object, after completely u
 PS: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenGL will crush your computer without mercy!
 
 PSS: I didn't put the image of 12M factory since the only Factory model I can find turn out to be wrong, they have wrong vertex and index data. The program run smoothly, no vertex data is missing and result in black screen.
-
-# Gallery
-
-San Miguel 10.7M Triangles.
-![image](https://user-images.githubusercontent.com/93391908/140255256-d7cb524f-a53d-428e-ae15-4ee86b3ee16e.png)
-
-RungHolt 9.7M Triangles.
-![image](https://user-images.githubusercontent.com/93391908/140255628-4f5f732f-2f60-4cf8-a5ac-247b901d3179.png)
