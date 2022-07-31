@@ -1,4 +1,3 @@
-Thank You xJayLee for starring me seven of your precious stars, Thank you for your generosity, May God on your side, Happy Coding!
 
 # OpenGL-Object-Loading
 OpenGL Object Loading using OpenGL 4.3 is capable of loading virtually every 3d.obj file you can find on the internet, without using another object loading library (assimp for example). The program can load 3d objects with 12M+ triangles and more.
