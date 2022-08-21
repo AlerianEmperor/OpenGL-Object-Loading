@@ -2,7 +2,7 @@
 # OpenGL-Object-Loading
 OpenGL Object Loading using OpenGL 4.3 is capable of loading virtually every 3d.obj file you can find on the internet, without using another object loading library (assimp for example). The program can load 3d objects with 12M+ triangles and more.
 
-The purpose of this project is to provide a shooting point for my camera in the physical based rendering with Lux project. Real time camera position can be turn on to choose the best view spot. 
+The purpose of this project is to provide a shooting point for my camera in the LuxRender Project. Real time camera position can be turn on to choose the best view spot. 
 
 
 # Gallery
