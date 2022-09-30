@@ -1,3 +1,4 @@
+I really really hate people who download the code without staring anything!!! is your star so precious that it is such a waste to star this project, it is so frustrating to see so many people use the code without the proper respect, and for that reason, I have removed the code altogether, you can still access the code by starring the projects and send me an email at phansanglittleemperor@gmail.com . When I am done with this project, this github will gone forever!
 
 # OpenGL-Object-Loading
 OpenGL Object Loading using OpenGL 4.3 is capable of loading virtually every 3d.obj file you can find on the internet, without using another object loading library (assimp for example). The program can load 3d objects with 12M+ triangles and more.
