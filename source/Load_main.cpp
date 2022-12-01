@@ -6,7 +6,7 @@
 #include <glm\gtc\type_ptr.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include "Utility.h"
-#include "Load_Model.h"
+#include "Load_Model_Correct.h"
 #include "Controls.h"
 
 using namespace std;
