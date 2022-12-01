@@ -107,7 +107,7 @@ struct Material
 
 GLuint LoadTexture(const string& filepath)
 {
-	GLuint texture_index = SOIL_load_OGL_texture(filepath.c_str(), 3, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	GLuint texture_index = SOIL_load_OGL_texture(filepath.c_str(), 4, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	//cout << "tex ind: " << texture_index << "\n";
 	if (texture_index == 0)
 		cout << "Load Texture " << filepath << " Fail\n";
