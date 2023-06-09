@@ -38,3 +38,6 @@ Above are the 3 main problems when it come to loading object, after completely u
 PS: it is only possible to load SanMiguel with modern OpenGL pipeline, old OpenGL will crush your computer without mercy!
 
 PSS: I didn't put the image of 12M factory since the only Factory model I can find turn out to be wrong, they have wrong vertex and index data. The program run smoothly, no vertex data is missing and result in black screen.
+
+# Build
+All of the code in my repositories is written in .h file to reduce look up between .h file and .cpp file, you only need to copy everything into your project, linked with glfw3.lib (some might need soil2.lib and freeglut.lib) and compile. In this object, their you only need to care about Load_Model_2.h, other Load_Model file is just previous versions, I put here so I can easily find them, you can delete when compile. If not, it will not affect either.
