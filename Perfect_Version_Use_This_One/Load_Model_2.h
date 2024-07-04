@@ -579,7 +579,6 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 			Triangle_index tr(index[start_v], index[start_vt], index[start_vn], index[3 * i + 3], index[3 * i + 4], index[3 * i + 5], index[3 * i + 6], index[3 * i + 7], index[3 * i + 8]);
 			tr.face_type = Single_Line;
 			trs.emplace_back(tr);
-			return;
 			//faces.emplace_back(f);
 		}
 	}
@@ -606,7 +605,6 @@ static void get_face_index(char*& t, const int& vs, const int& vts, const int& v
 				Triangle_index tr(index[start_v], index[start_vt], -1, index[2 * i + 2], index[2 * i + 3], -1, index[2 * i + 4], index[2 * i + 5], -1);
 				tr.face_type = Single_Line;
 				trs.emplace_back(tr);
-
 			}
 		}
 		else if (face_type == Double_Line)// v // vn
